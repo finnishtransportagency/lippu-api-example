@@ -1,0 +1,72 @@
+# application.yml
+
+logging:
+  level:
+    fi:
+      ficora:
+        lippu: DEBUG
+    org:
+      springframework:
+        web:
+          filter:
+            CommonsRequestLoggingFilter: DEBUG
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+
+spring:
+  jackson:
+    date-format: fi.ficora.lippu.RFC3339DateFormat
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+endpoints:
+  enabled: false
+  info:
+    enabled: true
+  health:
+    enabled: true
+  metrics:
+    enabled: true
+  env:
+    enabled: true
+management:
+  port: 8081
+  security:
+    enabled: false
+
+data:
+  operator: Test Transport Operator
+  secret: a661abab-0101-47f4-9345-114b0d906ce7-360a6a11-f8a9-4ea6-b36f-76f9d10465ec
+  privateKey: keys/operator.key
+  publicKey: keys/operator.pub
+  authTokenType: JWE
+  passengerCategories:
+    - Adult
+    - Child
+    - Senior
+    - Youth
+project:
+  name: lippu
+  version: 0.1
+  description: Lippu-project example implementation
+
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+
+version: ${project.version}
+
+---
+spring:
+  profiles: default
+
+server:
+  port: 8080
+  contextPath: /stubs
+
+

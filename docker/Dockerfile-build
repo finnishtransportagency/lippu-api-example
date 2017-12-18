@@ -1,0 +1,13 @@
+FROM lippu/lippu-builddeps
+
+ENV LIPPU_HOME=/home/lippu
+MAINTAINER Markku Korkeala
+
+ARG jar="lippu-service.jar"
+
+ENV JARFILE=$jar
+
+USER lippu
+COPY src $LIPPU_HOME/src
+
+RUN /bin/sh gradlew clean build

@@ -1,0 +1,121 @@
+[ {
+    "_class" : "fi.ficora.lippu.domain.Client",
+    "account" : "2967a6e3-fe24-4bec-84d1-1ba34c5f620e",
+    "name" : "Maas Operator 1",
+    "secret" : "Maas Operator 1",
+    "keys": [
+     {
+      "pubKeyId": "d52c0c74-6cd5-443b-ac5e-ee49b2b3c6ad",
+      "keyfile": "keys/client/client1.pub"
+     }],
+    "contract" : "CONTRACT 35235-1"
+   },
+  {
+    "_class" : "fi.ficora.lippu.domain.Client",
+    "account" : "fb46604a-eceb-4248-8f8e-31ecd92aa18f",
+    "name" : "Second MaaS Operator",
+    "secret" : "fb46604a-eceb-4248-8f8e-31ecd92aa18f",
+    "keys": [
+      {
+        "pubKeyId": "empty",
+        "keyfile": "empty"
+      }
+    ],
+    "contract" : "CONTRACT 28764-4"
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.Product",
+    "id" : "be0f6694-6ca1-4175-a25f-28a709380ad4",
+    "name" : "Single ticket",
+    "productType": "PRODUCT-SINGLE-TICKET",
+    "contract": "CONTRACT-AB123CD",
+    "description": "The validity of a single ticket starts at the time of purchase. The validity period will be printed to the ticket.",
+    "fromLat": 60.2,
+    "fromLon": 24.8,
+    "toLat": 61.0,
+    "toLon": 25.7,
+    "accessibilities": {"UNKNOWN":
+      {"title": "UNKNOWN"}}
+    ,
+    "extraServices": [
+    ],
+    "suitablePassengerCategories": ["Adult", "Child","Senior"]
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.Product",
+    "id" : "63787ead-29b4-4b5b-8c99-695ae28e2da8",
+    "name" : "Single ticket",
+    "productType": "PRODUCT-SINGLE-TICKET",
+    "contract": "CONTRACT-362243",
+    "description": "The validity of a single ticket starts at the time of purchase. The validity period will be printed to the ticket.",
+    "fromLat": 60.4,
+    "fromLon": 25.7,
+    "fromId": "Po3001",
+    "toLat": 60.5,
+    "toLon": 26.9,
+    "accessibilities": {"GUIDE_DOG":
+      {"title": "GUIDE_DOG", "fare": {"currency" : "EUR", "amount": 0, "vatPercent": 0},
+        "description" : "Guide dogs allowed to the vehicle."},
+      "LOW-FLOOR":
+      {"title": "LOW_FLOOR", "fare": {"currency" : "EUR", "amount": 0, "vatPercent": 0},
+        "description" : "Low-floor transport"},
+      "BOARDING_ASSISTANCE":
+      {"title": "BOARDING_ASSISTANCE", "fare": {"currency" : "EUR", "amount": 0, "vatPercent": 0},
+        "description" : "Assistance for boarding the vehicle."}}
+    ,
+    "extraServiceFeatures": {"CHILDSEAT":
+      {"title": "CHILDSEAT", "fare": { "amount" : 13, "currency": "EUR", "vatPercent": 10},
+        "description" : "Separate child safety seat for the travel."}}
+    ,
+    "suitablePassengerCategories": ["Adult", "Child","Senior"]
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.Capacity",
+    "productId" : "be0f6694-6ca1-4175-a25f-28a709380ad4",
+    "maxCapacity": 60
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.Capacity",
+    "productId" : "63787ead-29b4-4b5b-8c99-695ae28e2da8",
+    "maxCapacity": 30
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.Timetable",
+    "id" : "d11cc238-6148-4c11-a86a-b66220beadb0",
+    "productId" : "be0f6694-6ca1-4175-a25f-28a709380ad4",
+    "operatedOn": [
+      "MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY", "SUNDAY"
+    ],
+    "departureHour" : 20,
+    "departureMinute": 0,
+    "arrivalHour" : 23,
+    "arrivalMinute": 10
+
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.Timetable",
+    "id" : "e3db58ef-0c21-41e9-bb58-b294b056a3c2",
+    "productId" : "63787ead-29b4-4b5b-8c99-695ae28e2da8",
+    "operatedOn": [
+      "MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"
+    ],
+    "departureHour" : 19,
+    "departureMinute": 0,
+    "arrivalHour" : 21,
+    "arrivalMinute": 35
+
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.TransportInfo",
+    "productId" : "be0f6694-6ca1-4175-a25f-28a709380ad4",
+    "operator": "Liikennöitsijä OY AB (Y-1234567)",
+    "vehicleInfo": "Linja-auto Mikkeli-Lahti"
+  },
+  {
+    "_class" : "fi.ficora.lippu.domain.TransportInfo",
+    "productId" : "63787ead-29b4-4b5b-8c99-695ae28e2da8",
+    "operator": "Liikennöitsijä OY AB (Y-1234567)",
+    "vehicleInfo": "Linja-auto Porvoo-Kotka"
+  }
+]
+

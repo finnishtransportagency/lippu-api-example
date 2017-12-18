@@ -1,0 +1,85 @@
+buildscript {
+    ext{
+	    springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('org.owasp:dependency-check-gradle:3.0.2')
+        classpath('com.github.ben-manes:gradle-versions-plugin:0.17.0')
+    }
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+group 'fi.ficora'
+version '0.1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.owasp.dependencycheck'
+apply plugin: 'findbugs'
+apply plugin: 'com.github.ben-manes.versions'
+
+
+//FindBugs task that load security rules only
+task findSecurityBugs(type: FindBugs) {
+
+    classes = fileTree(project.rootDir.absolutePath).include("**/*.class")
+    source = fileTree(project.rootDir.absolutePath).include("**/*.java")
+    classpath = files()
+    pluginClasspath = project.configurations.findbugsPlugins
+
+    findbugs {
+        toolVersion = "3.0.1"
+        sourceSets = [sourceSets.main]
+        ignoreFailures = true
+        reportsDir = file("$project.buildDir/findbugsReports")
+        effort = "max"
+        reportLevel = "low"
+        //includeFilter = file("$rootProject.projectDir/fsb-include.xml")
+        //excludeFilter = file("$rootProject.projectDir/fsb-exclude.xml")
+    }
+}
+jar {
+    baseName = 'lippu-service'
+    archiveName = 'lippu-service.jar'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+ext{
+	springfoxVersion = '2.7.0'
+	springDataVersion = '1.2.9.RELEASE'
+}
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile("org.springframework.data:spring-data-keyvalue:${springDataVersion}")
+    compile('org.bouncycastle:bcprov-jdk15on:1.58')
+    compile "io.springfox:springfox-swagger2:${springfoxVersion}"
+    compile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+    compile 'org.bitbucket.b_c:jose4j:0.6.2'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2'
+    compile('org.jsoup:jsoup:1.11.2')
+    findbugs configurations.findbugsPlugins.dependencies
+    findbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile('org.springframework.boot:spring-boot-starter-test:')
+}

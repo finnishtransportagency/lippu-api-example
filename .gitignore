@@ -1,0 +1,10 @@
+.gradle
+.idea
+build
+*pem
+keys
+out
+__*
+build_image
+artifacts
+stamps
